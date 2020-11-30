@@ -4,10 +4,14 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
  */
 class User implements UserInterface
 {
@@ -19,6 +23,7 @@ class User implements UserInterface
     private $id;
 
     /**
+     * @Assert\Email(message="Your email is not valid!")
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
@@ -35,7 +40,15 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank(message="Please provide your username!")
+     * @Assert\Length(
+     *     min=3,
+     *     max=50,
+     *     minMessage="Minimum 3 characters please!",
+     *     maxMessage="Maximum 50 characters please!"
+     * )
+     * @Assert\Regex(pattern="/^[a-z0-9_-]+$/i", message="Please use only letters, numbers, underscores and dashes!")
+     * @ORM\Column(type="string", length=50, unique=true)
      */
     private $username;
 

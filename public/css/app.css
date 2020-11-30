@@ -18,7 +18,17 @@ header {
     padding: 1rem 0;
 }
 
+.header-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-nav a {
+    margin-left: 1rem;
+}
+
 header h1 {
+    flex: 1;
     margin: 0 0 10px 0;
 }
 
