@@ -55,8 +55,16 @@ main {
     background-color: #FFF1E6;
 }
 
+main a {
+    color: #8c6956;
+}
+
 main h2 {
     margin-top: 0;
+}
+
+.wishes-list article {
+    margin-bottom: 0.5rem;
 }
 
 footer {
