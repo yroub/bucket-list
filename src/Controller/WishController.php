@@ -26,9 +26,18 @@ class WishController extends AbstractController
     /**
      * @Route("/wishes/detail/{id}", name="wish_detail")
      */
-    public function detail(int $id): Response
+    public function detail(int $id, WishRepository $wishRepository): Response
     {
+        //récupère ce wish en fonction de l'id présent dans l'URL
+        $wish = $wishRepository->find($id);
+
+        //s'il n'existe pas en bdd, on déclenche une erreur 404
+        if (!$wish){
+            throw $this->createNotFoundException('This wish do not exists! Sorry!');
+        }
+
         return $this->render('wish/detail.html.twig', [
+            "wish" => $wish
         ]);
     }
 }
