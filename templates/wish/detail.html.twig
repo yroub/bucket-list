@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h2>{{ wish.title }}</h2>
+    <h2>{{ wish.title }} [{{ wish.category.name }}]</h2>
     {# on utilise le filtre date() pour convertir l'objet en chaîne #}
     <p class="wish-credit">Created by {{ wish.author }} on {{ wish.dateCreated|date('Y-m-d') }}</p>
     {# le filtre nl2br convertie les sauts de ligne du texte en balises <br> #}
