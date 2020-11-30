@@ -1,12 +1,34 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Bucket-List{% endblock %}</title>
+</head>
+<body>
+    {# entête du site #}
+    <header>
+        <div class="container">
+            <h1>Bucket-List</h1>
+            <nav>
+
+            </nav>
+        </div>
+    </header>
+
+    {# contenu principal de chaque page #}
+    <main>
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
+    </main>
+
+    {# pied-de-page du site #}
+    <footer>
+        <div class="container">
+
+        </div>
+    </footer>
+</body>
 </html>
