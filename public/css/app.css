@@ -10,6 +10,7 @@ body {
 .container {
     max-width: 800px;
     margin: auto;
+    padding: 0 10px;
 }
 
 header {
@@ -44,10 +45,18 @@ header nav a:hover {
     display: flex;
 }
 
+.header-nav a {
+    margin-right: 2rem;
+}
+
 main {
     flex: 1;
     padding: 1rem 0;
     background-color: #FFF1E6;
+}
+
+main h2 {
+    margin-top: 0;
 }
 
 footer {
