@@ -20,6 +20,11 @@ class WishController extends AbstractController
     {
         //notre entité vide
         $wish = new Wish();
+
+        //pour préremplir le pseudo dans le formulaire...
+        $currentUserUsername = $this->getUser()->getUsername();
+        $wish->setAuthor($currentUserUsername);
+
         //notre formulaire, associée à l'entité vide
         $wishForm = $this->createForm(WishType::class, $wish);
 
