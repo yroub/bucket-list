@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Wish;
 use App\Form\WishType;
 use App\Repository\WishRepository;
+use App\Util\Censurator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +17,11 @@ class WishController extends AbstractController
     /**
      * @Route("/wishes/create", name="wish_create")
      */
-    public function create(Request $request, EntityManagerInterface $entityManager): Response
+    public function create(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        Censurator $censurator
+    ): Response
     {
         //notre entité vide
         $wish = new Wish();
@@ -36,6 +41,10 @@ class WishController extends AbstractController
             //hydrate les propriétés absentes du formulaires
             $wish->setIsPublished(true);
             $wish->setDateCreated(new \DateTime());
+
+            //censure les méchants mots
+            $purifiedDescription = $censurator->purify($wish->getDescription());
+            $wish->setDescription($purifiedDescription);
 
             //sauvegarde en bdd
             $entityManager->persist($wish);
