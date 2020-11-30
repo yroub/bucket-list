@@ -5,14 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}Bucket-List{% endblock %}</title>
+
+    {# notre google font #}
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Asul:wght@400;700&display=swap" >
+
+    {# notre css #}
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+    {# le favicon #}
+    <link rel="icon" href="{{ asset('img/favicon.png') }}">
 </head>
 <body>
     {# entête du site #}
     <header>
         <div class="container">
-            <h1>Bucket-List</h1>
-            <nav>
-
+            <h1 class="header-logo">
+                <a href="{{ path('main_home') }}" title="Go back to homepage">
+                    <img src="{{ asset('img/logo.svg') }}" alt="Bucket-List Logo">Bucket-List
+                </a>
+            </h1>
+            <nav class="header-nav">
+                <a href="{{ path('main_home') }}" title="Go back to homepage">Home</a>
             </nav>
         </div>
     </header>
@@ -27,7 +41,7 @@
     {# pied-de-page du site #}
     <footer>
         <div class="container">
-
+            © Bucket-List {{ "now"|date("Y") }}
         </div>
     </footer>
 </body>
