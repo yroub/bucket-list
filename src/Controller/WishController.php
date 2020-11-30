@@ -3,12 +3,21 @@
 namespace App\Controller;
 
 use App\Repository\WishRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class WishController extends AbstractController
 {
+    /**
+     * @Route("/wishes/create", name="wish_create")
+     */
+    public function create(): Response
+    {
+        return $this->render('wish/create.html.twig');
+    }
+
     /**
      * @Route("/wishes", name="wish_list")
      */
