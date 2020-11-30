@@ -35,6 +35,16 @@
 
     {# contenu principal de chaque page #}
     <main>
+
+        {# affiche les éventuels messages flash #}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
         <div class="container">
             {% block body %}{% endblock %}
         </div>

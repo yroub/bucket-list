@@ -63,6 +63,18 @@ main h2 {
     margin-top: 0;
 }
 
+.alert {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.alert-success {background-color: #a2a232;}
+.alert-error {background-color: #d4550e;}
+
 .wishes-list article {
     margin-bottom: 0.5rem;
 }
@@ -70,6 +82,22 @@ main h2 {
 .wish-credit {
     font-size: 0.9rem;
     font-style: italic;
+}
+
+/* formulaires */
+label {
+    display: block;
+}
+
+input, textarea {
+    box-sizing: border-box;
+    width: 50%;
+    margin-bottom: 1rem;
+}
+
+button {
+    padding: 0.5rem 0.7rem;
+    font-family: inherit;
 }
 
 footer {

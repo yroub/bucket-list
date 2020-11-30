@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Wish;
+use App\Form\WishType;
 use App\Repository\WishRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -13,9 +16,37 @@ class WishController extends AbstractController
     /**
      * @Route("/wishes/create", name="wish_create")
      */
-    public function create(): Response
+    public function create(Request $request, EntityManagerInterface $entityManager): Response
     {
-        return $this->render('wish/create.html.twig');
+        //notre entité vide
+        $wish = new Wish();
+        //notre formulaire, associée à l'entité vide
+        $wishForm = $this->createForm(WishType::class, $wish);
+
+        //récupère les données du form et les injecte dans notre $wish
+        $wishForm->handleRequest($request);
+
+        //si le formulaire est soumis et valide...
+        if ($wishForm->isSubmitted() && $wishForm->isValid()){
+            //hydrate les propriétés absentes du formulaires
+            $wish->setIsPublished(true);
+            $wish->setDateCreated(new \DateTime());
+
+            //sauvegarde en bdd
+            $entityManager->persist($wish);
+            $entityManager->flush();
+
+            //affiche un message sur la prochaine page
+            $this->addFlash('success', 'Idea successfully added!');
+
+            //redirige vers la page de détails de l'idée fraîchement créée
+            return $this->redirectToRoute('wish_detail', ['id' => $wish->getId()]);
+        }
+
+        //affiche le formulaire
+        return $this->render('wish/create.html.twig', [
+            'wishForm' => $wishForm->createView()
+        ]);
     }
 
     /**

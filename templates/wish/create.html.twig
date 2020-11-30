@@ -3,7 +3,10 @@
 {% block body %}
     <h2>Add your wishes!</h2>
 
-    {# @TODO: afficher le formulaire #}
+    {{ form_start(wishForm) }}
+    {{ form_widget(wishForm) }}
+    <button>Let's go!</button>
+    {{ form_end(wishForm) }}
 {% endblock %}
 
 {% block title %}Add your wishes | {{ parent() }}{% endblock %}
