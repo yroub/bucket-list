@@ -3,7 +3,7 @@
 {% block body %}
     <h2>Add your wishes!</h2>
 
-    {{ form_start(wishForm) }}
+    {{ form_start(wishForm, {attr: {novalidate: 'novalidate'}}) }}
     {{ form_widget(wishForm) }}
     <button>Let's go!</button>
     {{ form_end(wishForm) }}
