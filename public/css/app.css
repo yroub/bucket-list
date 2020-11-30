@@ -89,9 +89,10 @@ label {
     display: block;
 }
 
-input, textarea {
+input, textarea, select {
     box-sizing: border-box;
     width: 50%;
+    padding: 0.2rem 0.5rem;
     margin-bottom: 1rem;
 }
 
