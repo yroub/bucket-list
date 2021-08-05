@@ -66,7 +66,7 @@ class Wish
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="wishes")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $category;
 
